@@ -1,0 +1,114 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>it.tgi</groupId>
+	<artifactId>tgi-master</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>TGI Common settings</name>
+	<description>Common settings for TGI Projects</description>
+
+	<properties>
+		<it.tgi.is-tgi-project>1</it.tgi.is-tgi-project>
+        <dependency.slf4j>1.7.5</dependency.slf4j>
+        <dependency.logback>1.0.13</dependency.logback>
+  		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>        
+	</properties>
+
+	<repositories>
+        <!-- TGI Public Repository -->
+		<repository>
+			<id>tgi-public</id>
+			<url>http://192.168.3.172:8080/nexus/content/groups/public/</url>
+		</repository>
+        <!-- highly available repository serving empty artifacts -->
+		<repository>
+			<id>version99</id>
+			<url>http://version99.qos.ch/</url>
+		</repository>
+	</repositories>
+
+	<distributionManagement>
+		<repository>
+			<id>tgi-releases</id>
+			<url>http://192.168.3.172:8080/nexus/content/repositories/releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>tgi-snapshots</id>
+			<url>http://192.168.3.172:8080/nexus/content/repositories/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+	<!-- Replace log4j and commons-logging with an empty artifact -->
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>commons-logging</groupId>
+				<artifactId>commons-logging</artifactId>
+				<version>99-empty</version>
+			</dependency>
+			<dependency>
+				<groupId>log4j</groupId>
+				<artifactId>log4j</artifactId>
+				<version>99-empty</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<!-- Logback is the TGI default logging lib -->
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${dependency.logback}</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-core</artifactId>
+			<version>${dependency.logback}</version>
+		</dependency>
+
+		<!-- Explicitly depend on the latest slf4j API -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${dependency.slf4j}</version>
+		</dependency>
+		<!-- Route JCL to SLF4j -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>${dependency.slf4j}</version>
+		</dependency>
+		<!-- Route LOG4j to SLF4j -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>log4j-over-slf4j</artifactId>
+			<version>${dependency.slf4j}</version>
+		</dependency>
+		<!-- Route JUL to SLF4j -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jul-to-slf4j</artifactId>
+			<version>${dependency.slf4j}</version>
+		</dependency>
+	</dependencies>
+	
+	
+	<!-- Build phase plugins -->
+	<build>
+		<plugins>
+			<!-- Forces java compiler to 1.7 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
