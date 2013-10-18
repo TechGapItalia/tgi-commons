@@ -10,18 +10,25 @@
 
 	<properties>
 		<it.tgi.is-tgi-project>1</it.tgi.is-tgi-project>
-		<dependency.slf4j>1.7.5</dependency.slf4j>
-		<dependency.logback>1.0.13</dependency.logback>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <dependency.slf4j>1.7.5</dependency.slf4j>
+        <dependency.logback>1.0.13</dependency.logback>
+        <dependency.maven-compiler-plugin>3.1</dependency.maven-compiler-plugin>
+        <dependency.svn-revision-number-plugin>1.13</dependency.svn-revision-number-plugin>
+        <timestamp>${maven.build.timestamp}</timestamp>
+  		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
+        <!-- Define them in your project -->
+        <!-- <maven.compiler.source>1.7</maven.compiler.source> -->
+        <!-- <maven.compiler.target>1.7</maven.compiler.target> -->
 	</properties>
 
 	<repositories>
-		<!-- TGI Public Repository -->
+        <!-- TGI Public Repository -->
 		<repository>
 			<id>tgi-public</id>
 			<url>http://192.168.3.172:8080/nexus/content/groups/public/</url>
 		</repository>
-		<!-- highly available repository serving empty artifacts -->
+        <!-- highly available repository serving empty artifacts -->
 		<repository>
 			<id>version99</id>
 			<url>http://version99.qos.ch/</url>
@@ -93,21 +100,35 @@
 			<version>${dependency.slf4j}</version>
 		</dependency>
 	</dependencies>
-
+	
+	
 	<!-- Build phase plugins -->
 	<build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
 		<plugins>
-			<!-- Forces java compiler to 1.6 -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.1</version>
-				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
-				</configuration>
+				<version>${dependency.maven-compiler-plugin}</version>
 			</plugin>
+            <plugin>
+                <groupId>com.google.code.maven-svn-revision-number-plugin</groupId>
+                <artifactId>svn-revision-number-maven-plugin</artifactId>
+                <version>${dependency.svn-revision-number-plugin}</version>
+                <executions>
+                    <execution>
+                        <phase>post-clean</phase>
+                        <goals>
+                            <goal>revision</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
 		</plugins>
 	</build>
-
 </project>
