@@ -19,10 +19,28 @@
 	<description>TGI Commons class and more...</description>
 
 	<properties>
-		<spring.version>3.2.4.RELEASE</spring.version>
-		<spring.security.version>3.2.0.M2</spring.security.version>
+		<spring.version>3.2.8.RELEASE</spring.version>
+		<spring-data-jpa.version>1.5.2.RELEASE</spring-data-jpa.version>
+		<spring.security.version>3.2.3.RELEASE</spring.security.version>
 		<jackson.version>2.2.2</jackson.version>
-		<hibernate.version>4.2.7.SP1</hibernate.version>
+
+		<joda-time.version>2.3</joda-time.version>
+		<usertype.core.version>3.2.0.GA</usertype.core.version>
+
+		<hibernate.version>4.2.10.Final</hibernate.version>
+		<dependency.commons-dbcp>1.4</dependency.commons-dbcp>
+		<flyway.version>3.0</flyway.version>
+
+		<!-- Test -->
+		<junit.version>4.11</junit.version>
+
+		<!-- Runtime -->
+		<tomcat.version>7.0.53</tomcat.version>
+		<hsqldb.version>2.3.2</hsqldb.version>
+		<oracle.version>11.2.0.4</oracle.version>
+
+		<!-- Plugins -->
+		<maven-resources-plugin.version>2.6</maven-resources-plugin.version>
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<maven.compiler.target>1.7</maven.compiler.target>
 	</properties>
@@ -45,6 +63,24 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-aspects</artifactId>
 			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-core</artifactId>
+			<version>${flyway.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>1.9.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.1</version>
 		</dependency>
 
 		<!-- Spring Security -->
@@ -89,28 +125,37 @@
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-jpa</artifactId>
-			<version>1.4.1.RELEASE</version>
+			<version>${spring-data-jpa.version}</version>
 		</dependency>
 
-		<!-- Hibernate + JPA -->
+		<!-- HSQL -->
 		<dependency>
-			<groupId>org.hibernate.javax.persistence</groupId>
-			<artifactId>hibernate-jpa-2.0-api</artifactId>
-			<version>1.0.0.Final</version>
+			<groupId>org.hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+			<version>${hsqldb.version}</version>
+			<scope>runtime</scope>
 		</dependency>
 
-		<!-- Dependencies provided by the container -->
+		<!-- Oracle -->
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>2.5</version>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc6</artifactId>
+			<version>${oracle.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- Dependencies provided by the container (tomcat) -->
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-servlet-api</artifactId>
+			<version>${tomcat.version}</version>
 			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jsp-api</artifactId>
-			<version>2.0</version>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-jsp-api</artifactId>
+			<version>${tomcat.version}</version>
 			<scope>provided</scope>
 		</dependency>
 
@@ -120,7 +165,6 @@
 			<artifactId>hibernate-core</artifactId>
 			<version>${hibernate.version}</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
@@ -128,27 +172,39 @@
 			<scope>runtime</scope>
 		</dependency>
 
+		<!-- Connection pooling -->
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>${dependency.commons-dbcp}</version>
+		</dependency>
+
 		<!-- Joda -->
 		<dependency>
 			<groupId>joda-time</groupId>
 			<artifactId>joda-time</artifactId>
-			<version>2.3</version>
+			<version>${joda-time.version}</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.jadira.usertype</groupId>
 			<artifactId>usertype.core</artifactId>
-			<version>3.1.0.CR8</version>
+			<version>${usertype.core.version}</version>
+		</dependency>
+
+		<!-- Guava -->
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>17.0</version>
 		</dependency>
 
 		<!-- TEST -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.11</version>
+			<version>${junit.version}</version>
 			<scope>test</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
