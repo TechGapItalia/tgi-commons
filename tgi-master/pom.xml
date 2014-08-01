@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>it.tgi</groupId>
 	<artifactId>tgi-master</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<packaging>pom</packaging>
 	<name>TGI Common settings</name>
 	<description>Common settings for TGI Projects</description>
