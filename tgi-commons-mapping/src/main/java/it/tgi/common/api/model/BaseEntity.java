@@ -2,13 +2,23 @@ package it.tgi.common.api.model;
 
 import org.springframework.data.domain.Persistable;
 
-public interface BaseEntity extends Persistable<Long> {
+import java.io.Serializable;
 
-	void setId(Long id);
+/**
+ * Interface for a database-backed entity that can be enabled/disabled and has an UUID (for consistent usage inside collections)
+ * <p/>
+ * Implementations should override {@link it.tgi.common.api.model.AbstractGenericEntity} and its subclasses in order to
+ * provide consistent semantics for usage inside collections.
+ *
+ * @param <PK> Identifier class
+ */
+public interface BaseEntity<PK extends Serializable> extends Persistable<PK> {
 
-	boolean isEnabled();
+    void setId(PK id);
 
-	void setEnabled(boolean enabled);
+    boolean isEnabled();
 
-	String getUuid();
+    void setEnabled(boolean enabled);
+
+    String getUuid();
 }

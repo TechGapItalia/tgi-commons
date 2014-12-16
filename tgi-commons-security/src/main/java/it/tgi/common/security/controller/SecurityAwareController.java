@@ -5,6 +5,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 public abstract class SecurityAwareController<U extends Authentication> {
 
+    @SuppressWarnings("unchecked")
     protected U getAuthenticationUser() {
         final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return (U) authentication;

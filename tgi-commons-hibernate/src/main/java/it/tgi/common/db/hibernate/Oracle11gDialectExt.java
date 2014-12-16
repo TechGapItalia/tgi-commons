@@ -12,7 +12,6 @@ import java.sql.Types;
  * See https://hibernate.atlassian.net/browse/HHH-1961 or https://hibernate.atlassian.net/browse/HHH-2315
  */
 public class Oracle11gDialectExt extends Oracle10gDialect {
-
 	public Oracle11gDialectExt() {
 		super();
 		registerColumnType(Types.DOUBLE, "float(126)");
