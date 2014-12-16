@@ -1,21 +1,23 @@
 package it.tgi.common.api.service;
 
-import it.tgi.common.api.dto.Dto;
-import it.tgi.common.api.mapper.Mapper;
+import it.tgi.common.api.dto.GenericDto;
+import it.tgi.common.api.mapper.GenericMapper;
 import it.tgi.common.api.model.BaseEntity;
-import it.tgi.common.api.repository.Repository;
+import it.tgi.common.api.repository.GenericRepository;
 
-public abstract class AbstractCrudService<Entity extends BaseEntity, DTO extends Dto> {
+import java.io.Serializable;
 
-    protected abstract Repository<Entity> getEntityRepository();
+public abstract class GenericCrudService<Entity extends BaseEntity<PK>, DTO extends GenericDto<PK>, PK extends Serializable> {
 
-    protected abstract Mapper<Entity, DTO> getEntityMapper();
+    protected abstract GenericRepository<Entity, PK> getEntityRepository();
+
+    protected abstract GenericMapper<Entity, DTO, PK> getEntityMapper();
 
     public Iterable<DTO> list() {
         return getEntityMapper().convertAll(getEntityRepository().findAllEnabled());
     }
 
-    public DTO get(Long id) {
+    public DTO get(PK id) {
         return getEntityMapper().convert(getEntityRepository().findOne(id));
     }
 
@@ -33,7 +35,7 @@ public abstract class AbstractCrudService<Entity extends BaseEntity, DTO extends
         return getEntityMapper().convert(e);
     }
 
-    public void delete(Long id, boolean logical) {
+    public void delete(PK id, boolean logical) {
         if (logical) {
             getEntityRepository().disable(id);
         } else {
@@ -41,11 +43,11 @@ public abstract class AbstractCrudService<Entity extends BaseEntity, DTO extends
         }
     }
 
-    public void delete(Long id) {
+    public void delete(PK id) {
         delete(id, true);
     }
 
-    public void enable(Long id) {
+    public void enable(PK id) {
         getEntityRepository().enable(id);
     }
 
