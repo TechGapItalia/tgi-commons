@@ -17,6 +17,7 @@ public class RestAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
 	private static final Logger log = LoggerFactory.getLogger(RestAuthenticationEntryPoint.class);
 
+	@Override
 	public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
 		log.warn("Blocked unauthorized access attempt to {}", request.getRequestURI());
 		response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
