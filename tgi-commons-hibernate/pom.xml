@@ -10,6 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>tgi-commons-hibernate</artifactId>
+    <name>TGI Commons - Hibernate Integration</name>
 
     <dependencies>
         <!-- Hibernate -->

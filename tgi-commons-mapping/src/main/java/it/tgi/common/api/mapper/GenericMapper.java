@@ -33,11 +33,10 @@ public abstract class GenericMapper<Entity extends BaseEntity<PK>, DTO extends G
      * <p/>
      * The {@link Entity id is automatically set}
      *
-     * @param e   target {@link Entity}
      * @param dto source {@link DTO}
-     * @return The converted {@link Entity}
+     * @param e   target {@link Entity}
      */
-    protected abstract Entity fillEntity(Entity e, DTO dto);
+    protected abstract void fillEntity(DTO dto, Entity e);
 
     /**
      * Converts an {@link Entity} to the corresponding {@link DTO}.
@@ -46,9 +45,8 @@ public abstract class GenericMapper<Entity extends BaseEntity<PK>, DTO extends G
      *
      * @param e   source {@link Entity}
      * @param dto target {@link DTO}
-     * @return The converted {@link DTO}
      */
-    protected abstract DTO fillDto(Entity e, DTO dto);
+    protected abstract void fillDto(Entity e, DTO dto);
 
     protected GenericMapper(Class<Entity> entityClazz, Class<DTO> dtoClazz) {
         this.entityClazz = entityClazz;
@@ -57,25 +55,27 @@ public abstract class GenericMapper<Entity extends BaseEntity<PK>, DTO extends G
 
     @Override
     protected final DTO doForward(Entity e) {
-        DTO buildDTO = buildDTO();
-        buildDTO.setId(e.getId());
-        return fillDto(e, buildDTO);
+        DTO result = buildDTO();
+        result.setId(e.getId());
+        fillDto(e, result);
+        return result;
     }
 
     @Override
     protected final Entity doBackward(DTO input) {
         final PK id = input.getId();
-        Entity e = null;
+        Entity result = null;
 
         if (id != null) {
-            e = retrieveEntity(id);
+            result = retrieveEntity(id);
         }
 
-        if (e == null) {
-            e = buildEntity();
+        if (result == null) {
+            result = buildEntity();
         }
 
-        return fillEntity(e, input);
+        fillEntity(input, result);
+        return result;
     }
 
 

@@ -9,7 +9,7 @@
     <artifactId>tgi-commons</artifactId>
     <packaging>pom</packaging>
     <name>TGI Commons</name>
-    <description>TGI Common classes and more...</description>
+    <description>TGI Commons - Parent Project</description>
 
     <properties>
         <maven.compiler.source>1.7</maven.compiler.source>

@@ -21,7 +21,7 @@ public class RestFailureHandler extends SimpleUrlAuthenticationFailureHandler {
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
 		String message = "Authentication Failed: " + exception.getMessage();
 		log.warn(message);
-		response.sendError(HttpServletResponse.SC_BAD_REQUEST, message);
+		response.sendError(HttpServletResponse.SC_UNAUTHORIZED, message);
 	}
 
 }
