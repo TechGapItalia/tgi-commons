@@ -56,14 +56,14 @@ public abstract class AspectSecurity<UserClass extends Authentication> {
             if (!checkRules(pjp, theUser, rules)) {
                 throw new InsufficientAuthenticationException(
                         "Access to method "
-                                + AspectSecurityUtils.getSignatureString(pjp)
+                          //      + AspectSecurityUtils.getSignatureString(pjp)
                                 + " is not allowed!");
             }
         } else {
             if (!getChecker(defaultPolicy).check(pjp, null)) {
                 throw new InsufficientAuthenticationException(
                         "Access to method "
-                                + AspectSecurityUtils.getSignatureString(pjp)
+                          //      + AspectSecurityUtils.getSignatureString(pjp)
                                 + " is not allowed!");
 
             }

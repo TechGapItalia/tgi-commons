@@ -15,6 +15,10 @@ import java.util.List;
 public interface GenericRepository<T extends BaseEntity, PK extends Serializable> extends JpaRepository<T, PK> {
 
 	@Transactional(readOnly = true)
+	@Query("FROM #{#entityName} t ")
+	public List<T> findAll();
+	
+	@Transactional(readOnly = true)
 	@Query("FROM #{#entityName} t WHERE t.enabled = true")
 	public List<T> findAllEnabled();
 
