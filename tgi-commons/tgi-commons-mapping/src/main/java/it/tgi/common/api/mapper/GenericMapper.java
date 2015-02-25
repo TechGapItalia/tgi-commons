@@ -57,6 +57,7 @@ public abstract class GenericMapper<Entity extends BaseEntity<PK>, DTO extends G
     protected final DTO doForward(Entity e) {
         DTO result = buildDTO();
         result.setId(e.getId());
+        result.setEnabled(e.isEnabled());
         fillDto(e, result);
         return result;
     }
@@ -73,7 +74,7 @@ public abstract class GenericMapper<Entity extends BaseEntity<PK>, DTO extends G
         if (result == null) {
             result = buildEntity();
         }
-
+        result.setEnabled(input.getEnabled());
         fillEntity(input, result);
         return result;
     }
