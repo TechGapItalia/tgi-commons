@@ -21,8 +21,14 @@ public abstract class MapperWithList<Entity extends BaseEntity<Long>, DTO extend
 	
 	}
 
-	protected final void fillDto(Entity e, DTO dto){
-    	this.fillDto(e,dto,false);
+    /**
+     * @return true if you want to include disabled children
+     * */
+    protected abstract boolean addDisabledChildred();
+    
+	protected void fillDto(Entity e, DTO dto){
+		this.fillDto(e,dto,addDisabledChildred());
+
     };
     
     /**
@@ -35,5 +41,7 @@ public abstract class MapperWithList<Entity extends BaseEntity<Long>, DTO extend
      * @param withDisabledChildren if true requires to put disabled entities in lists
      */
     protected abstract void fillDto(Entity e, DTO dto,boolean withDisabledChildren);
+    
+   
     
 }

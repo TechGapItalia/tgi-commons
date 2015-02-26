@@ -16,11 +16,6 @@ public abstract class GenericReadOnlyService<Entity extends BaseEntity<PK>, DTO 
         return getEntityMapper().convertAll(getEntityRepository().findAllEnabled());
     }
     
-    public Iterable<DTO> listAll() {
-        return getEntityMapper().convertAll(getEntityRepository().findAll());
-    }
-
-
     public DTO get(PK id) {
         return getEntityMapper().convert(getEntityRepository().findOne(id));
     }

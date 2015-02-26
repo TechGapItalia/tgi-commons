@@ -89,7 +89,7 @@ public abstract class GenericMapper<Entity extends BaseEntity<PK>, DTO extends G
         return null;
     }
 
-    private DTO buildDTO() {
+    protected DTO buildDTO() {
         try {
             return dtoClazz.newInstance();
         } catch (InstantiationException | IllegalAccessException e) {
