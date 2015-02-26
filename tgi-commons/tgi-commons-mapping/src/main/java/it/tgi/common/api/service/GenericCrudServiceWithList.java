@@ -6,8 +6,6 @@ import it.tgi.common.api.exception.IdMismatchException;
 import it.tgi.common.api.exception.MalformedEntityException;
 import it.tgi.common.api.model.BaseEntity;
 
-import java.io.Serializable;
-
 public abstract class GenericCrudServiceWithList<Entity extends BaseEntity<Long>, DTO extends GenericDto<Long>> extends GenericReadOnlyServiceWithList<Entity,DTO> {
 
     protected abstract void assertDuplicate(Entity e, boolean isNew) throws DuplicateEntityException;
@@ -17,11 +15,11 @@ public abstract class GenericCrudServiceWithList<Entity extends BaseEntity<Long>
     /**
      * Call back when flag enabled changes.
      * Useful to add a behaviour like disable all children too..
-     * 
+     * 	
      * @param newEntity the updated not saved  {@link Entity}
      * @param previousEntity   the not updated  {@link Entity} 
      * */
-    protected abstract void onEnabledChange(Entity newEntity, Entity previousEntity);
+    protected abstract void onEnabledChange(boolean newEnabled, Entity previousEntity);
 
     public DTO save(DTO DTO) throws DuplicateEntityException {
         Entity e = getEntityMapper().reverse().convert(DTO);
@@ -36,19 +34,21 @@ public abstract class GenericCrudServiceWithList<Entity extends BaseEntity<Long>
         if (!id.equals(dto.getId())) {
             throw new IdMismatchException(dto.getClass());
         }
+        
+        _checkDisabledChange(dto);
+
         Entity e = getEntityMapper().reverse().convert(dto);
         _assertDuplicate(e, false);
         
-        checkDisabledChange(e);
         
         return saveOrUpdate(e);
     }
 
-    private void checkDisabledChange(Entity newEntity) {
+    private void _checkDisabledChange(DTO dto) {
     	
-		Entity previousEntity = getEntityRepository().findOne(newEntity.getId());
-		if(newEntity.isEnabled() != previousEntity.isEnabled()){
-			onEnabledChange(newEntity,previousEntity);
+		Entity e = getEntityRepository().findOne(dto.getId());
+		if(dto.getEnabled() != e.isEnabled()){
+			onEnabledChange(dto.getEnabled(),e);
 		}
 	}
 
