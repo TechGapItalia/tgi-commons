@@ -26,6 +26,7 @@ public abstract class MapperWithList<Entity extends BaseEntity<Long>, DTO extend
      * */
     protected abstract boolean addDisabledChildred();
     
+    
 	protected void fillDto(Entity e, DTO dto){
 		this.fillDto(e,dto,addDisabledChildred());
 
