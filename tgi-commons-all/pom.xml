@@ -43,6 +43,12 @@
             <version>${project.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>it.tgi</groupId>
+            <artifactId>tgi-commons-validation</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
     </dependencies>
     
 </project>
