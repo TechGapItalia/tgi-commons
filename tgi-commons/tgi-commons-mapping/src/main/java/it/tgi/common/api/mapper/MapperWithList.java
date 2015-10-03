@@ -11,7 +11,6 @@ import it.tgi.common.api.model.BaseEntity;
  *
  * @param <Entity> Entity class
  * @param <DTO>    DTO class
- * @param <PK>     Identifier class
  */
 public abstract class MapperWithList<Entity extends BaseEntity<Long>, DTO extends GenericDto<Long>> extends Mapper<Entity, DTO>{
 
@@ -34,7 +33,7 @@ public abstract class MapperWithList<Entity extends BaseEntity<Long>, DTO extend
     
     /**
      * Converts a {@link DTO} to the corresponding {@link Entity}.
-     * <p/>
+     * <br>
      * The {@link Entity id is automatically set}
      *
      * @param dto source {@link DTO}

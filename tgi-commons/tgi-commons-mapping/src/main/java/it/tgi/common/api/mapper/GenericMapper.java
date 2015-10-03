@@ -30,7 +30,7 @@ public abstract class GenericMapper<Entity extends BaseEntity<PK>, DTO extends G
 
     /**
      * Converts a {@link DTO} to the corresponding {@link Entity}.
-     * <p/>
+     * <br>
      * The {@link Entity id is automatically set}
      *
      * @param dto source {@link DTO}
@@ -40,7 +40,7 @@ public abstract class GenericMapper<Entity extends BaseEntity<PK>, DTO extends G
 
     /**
      * Converts an {@link Entity} to the corresponding {@link DTO}.
-     * <p/>
+     * <br>
      * The {@link DTO id is automatically set}
      *
      * @param e   source {@link Entity}

@@ -16,7 +16,7 @@ public abstract class GenericCrudServiceWithList<Entity extends BaseEntity<Long>
      * Call back when flag enabled changes.
      * Useful to add a behaviour like disable all children too..
      * 	
-     * @param newEntity the updated not saved  {@link Entity}
+     * @param newEnabled the updated not saved  {@link Entity}
      * @param previousEntity   the not updated  {@link Entity} 
      * */
     protected abstract void onEnabledChange(boolean newEnabled, Entity previousEntity);

@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 /**
  * Interface for a database-backed entity that can be enabled/disabled and has an UUID (for consistent usage inside collections)
- * <p/>
+ * <br>
  * Implementations should override {@link it.tgi.common.api.model.AbstractGenericEntity} and its subclasses in order to
  * provide consistent semantics for usage inside collections.
  *
