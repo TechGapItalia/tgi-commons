@@ -1,39 +1,167 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-    <prerequisites>
-        <maven>3.0.0</maven>
-    </prerequisites>
-    <modelVersion>4.0.0</modelVersion>
+	<prerequisites>
+		<maven>3.0.0</maven>
+	</prerequisites>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>it.tgi</groupId>
+	<artifactId>tgi-commons</artifactId>
+	<packaging>pom</packaging>
+	<name>TGI Commons</name>
+	<description>TGI Commons - Parent Project</description>
 
-    <artifactId>tgi-commons</artifactId>
-    <packaging>pom</packaging>
-    <name>TGI Commons</name>
-    <description>TGI Commons - Parent Project</description>
+	<properties>
+		<maven.compiler.source>1.7</maven.compiler.source>
+		<maven.compiler.target>1.7</maven.compiler.target>
+		<it.tgi.is-tgi-project>1</it.tgi.is-tgi-project>
+		<timestamp>${maven.build.timestamp}</timestamp>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
+	</properties>
 
-    <properties>
-        <maven.compiler.source>1.7</maven.compiler.source>
-        <maven.compiler.target>1.7</maven.compiler.target>
-    </properties>
+	<version>1.2.1-SNAPSHOT</version>
 
-    <parent>
-        <groupId>it.tgi</groupId>
-        <artifactId>tgi-master</artifactId>
-        <version>1.0.2</version>
-        <relativePath/>
-    </parent>
+	<modules>
+		<module>tgi-commons-hibernate</module>
+		<module>tgi-commons-security</module>
+		<module>tgi-commons-security-rest</module>
+		<module>tgi-commons-offline</module>
+		<module>tgi-commons-mapping</module>
+		<module>tgi-commons-validation</module>
+		<module>tgi-commons-all</module>
+	</modules>
+	
+	<dependencyManagement>
+		<dependencies>
+            <dependency>
+                <groupId>io.spring.platform</groupId>
+                <artifactId>platform-bom</artifactId>
+                <version>1.0.2.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+	</dependencyManagement>
 
-    <version>1.2.1-SNAPSHOT</version>
+		<dependencies>
+			<!-- Logback is the TGI default logging lib -->
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-classic</artifactId>
+			</dependency>
 
-    <modules>
-        <module>tgi-commons-hibernate</module>
-        <module>tgi-commons-security</module>
-        <module>tgi-commons-security-rest</module>
-        <module>tgi-commons-offline</module>
-        <module>tgi-commons-mapping</module>
-        <module>tgi-commons-validation</module>
-        <module>tgi-commons-all</module>
-    </modules>
+			<!-- Explicitly depend on the latest slf4j API -->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+			</dependency>
+			<!-- Route JCL to SLF4j -->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>jcl-over-slf4j</artifactId>
+			</dependency>
+			<!-- Route LOG4j to SLF4j -->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>log4j-over-slf4j</artifactId>
+			</dependency>
+			<!-- Route JUL to SLF4j -->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>jul-to-slf4j</artifactId>
+			</dependency>
+			<dependency>
+				<groupId>commons-logging</groupId>
+				<artifactId>commons-logging</artifactId>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>log4j</groupId>
+				<artifactId>log4j</artifactId>
+				<scope>provided</scope>
+			</dependency>
+		</dependencies>
 
+	<!-- Build phase plugins -->
+	<build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+		<plugins>
+			<plugin>
+				<artifactId>maven-source-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<useFile>false</useFile>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<configuration>
+					<deployAtEnd>true</deployAtEnd>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-install-plugin</artifactId>
+				<configuration>
+					<installAtEnd>true</installAtEnd>
+				</configuration>
+			</plugin>
+		</plugins>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>2.4</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>2.10.1</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>2.18</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<version>2.8.2</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-install-plugin</artifactId>
+					<version>2.5.2</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.1</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
 
 </project>
