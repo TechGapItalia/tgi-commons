@@ -31,6 +31,13 @@
 		<module>tgi-commons-validation</module>
 		<module>tgi-commons-all</module>
 	</modules>
+
+	<licenses>
+		<license>
+			<name>MIT License</name>
+			<url>LICENSE.txt</url>
+		</license>
+	</licenses>
 	
 	<dependencyManagement>
 		<dependencies>
