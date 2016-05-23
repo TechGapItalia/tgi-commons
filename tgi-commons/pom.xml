@@ -7,9 +7,12 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>it.tgi</groupId>
 	<artifactId>tgi-commons</artifactId>
+	<version>1.2.1</version>
 	<packaging>pom</packaging>
 	<name>TGI Commons</name>
 	<description>TGI Commons - Parent Project</description>
+	<url>https://github.com/TechGapItalia/tgi-commons</url>
+
 
 	<properties>
 		<maven.compiler.source>1.7</maven.compiler.source>
@@ -20,7 +23,7 @@
 		<maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
 	</properties>
 
-	<version>1.2.1-SNAPSHOT</version>
+	
 
 	<modules>
 		<module>tgi-commons-hibernate</module>
@@ -36,69 +39,146 @@
 		<license>
 			<name>MIT License</name>
 			<url>LICENSE.txt</url>
+			<distribution>repo</distribution>
 		</license>
 	</licenses>
-	
+
+	<organization>
+		<name>TechGap Italia</name>
+		<url>https://github.com/TechGapItalia</url>
+	</organization>
+
+	<developers>
+		<developer>
+			<name>Giovanni Condello</name>
+			<email>g.condello@techgap.it</email>
+			<organization>TechGap Italia</organization>
+			<organizationUrl>https://github.com/TechGapItalia</organizationUrl>
+		</developer>
+		<developer>
+			<name>Domenico Reggiori</name>
+			<email>d.reggiori@techgap.it</email>
+			<organization>TechGap Italia</organization>
+			<organizationUrl>https://github.com/TechGapItalia</organizationUrl>
+		</developer>
+		<developer>
+			<name>Alan Dell'Onze</name>
+			<email>a.dellonze@techgap.it</email>
+			<organization>TechGap Italia</organization>
+			<organizationUrl>https://github.com/TechGapItalia</organizationUrl>
+		</developer>
+		<developer>
+			<name>Marco Burla</name>
+			<email>m.burla@anoki.it</email>
+			<organization>TechGap Italia</organization>
+			<organizationUrl>https://github.com/TechGapItalia</organizationUrl>
+		</developer>
+		<developer>
+			<name>Daniele Bonelli</name>
+			<email>d.bonelli@techgap.it</email>
+			<organization>TechGap Italia</organization>
+			<organizationUrl>https://github.com/TechGapItalia</organizationUrl>
+		</developer>
+	</developers>
+
+	<scm>
+		<connection>scm:git:https://github.com/TechGapItalia/tgi-commons.git</connection>
+		<developerConnection>scm:git:https://github.com/TechGapItalia/tgi-commons.git</developerConnection>
+		<url>https://github.com/TechGapItalia/tgi-commons.git</url>
+	</scm>
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
+
 	<dependencyManagement>
 		<dependencies>
-            <dependency>
-                <groupId>io.spring.platform</groupId>
-                <artifactId>platform-bom</artifactId>
-                <version>1.0.2.RELEASE</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-	</dependencyManagement>
-
-		<dependencies>
-			<!-- Logback is the TGI default logging lib -->
 			<dependency>
-				<groupId>ch.qos.logback</groupId>
-				<artifactId>logback-classic</artifactId>
-			</dependency>
-
-			<!-- Explicitly depend on the latest slf4j API -->
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>slf4j-api</artifactId>
-			</dependency>
-			<!-- Route JCL to SLF4j -->
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>jcl-over-slf4j</artifactId>
-			</dependency>
-			<!-- Route LOG4j to SLF4j -->
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>log4j-over-slf4j</artifactId>
-			</dependency>
-			<!-- Route JUL to SLF4j -->
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>jul-to-slf4j</artifactId>
-			</dependency>
-			<dependency>
-				<groupId>commons-logging</groupId>
-				<artifactId>commons-logging</artifactId>
-				<scope>provided</scope>
-			</dependency>
-			<dependency>
-				<groupId>log4j</groupId>
-				<artifactId>log4j</artifactId>
-				<scope>provided</scope>
+				<groupId>io.spring.platform</groupId>
+				<artifactId>platform-bom</artifactId>
+				<version>1.0.2.RELEASE</version>
+				<type>pom</type>
+				<scope>import</scope>
 			</dependency>
 		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<!-- Logback is the TGI default logging lib -->
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+		</dependency>
+
+		<!-- Explicitly depend on the latest slf4j API -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+		<!-- Route JCL to SLF4j -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+		</dependency>
+		<!-- Route LOG4j to SLF4j -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>log4j-over-slf4j</artifactId>
+		</dependency>
+		<!-- Route JUL to SLF4j -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jul-to-slf4j</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
 
 	<!-- Build phase plugins -->
 	<build>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
 		<plugins>
+			<plugin>
+				<groupId>org.sonatype.plugins</groupId>
+				<artifactId>nexus-staging-maven-plugin</artifactId>
+				<version>1.6.3</version>
+				<extensions>true</extensions>
+				<configuration>
+					<serverId>ossrh</serverId>
+					<nexusUrl>https://oss.sonatype.org/</nexusUrl>
+					<autoReleaseAfterClose>true</autoReleaseAfterClose>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+				<version>1.5</version>
+				<executions>
+					<execution>
+						<id>sign-artifacts</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<artifactId>maven-source-plugin</artifactId>
 				<executions>
@@ -129,12 +209,6 @@
 				</configuration>
 			</plugin>
 			<plugin>
-				<artifactId>maven-deploy-plugin</artifactId>
-				<configuration>
-					<deployAtEnd>true</deployAtEnd>
-				</configuration>
-			</plugin>
-			<plugin>
 				<artifactId>maven-install-plugin</artifactId>
 				<configuration>
 					<installAtEnd>true</installAtEnd>
@@ -154,10 +228,6 @@
 				<plugin>
 					<artifactId>maven-surefire-plugin</artifactId>
 					<version>2.18</version>
-				</plugin>
-				<plugin>
-					<artifactId>maven-deploy-plugin</artifactId>
-					<version>2.8.2</version>
 				</plugin>
 				<plugin>
 					<artifactId>maven-install-plugin</artifactId>
