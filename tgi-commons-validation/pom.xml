@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>it.tgi</groupId>
+        <groupId>it.techgap</groupId>
         <artifactId>tgi-commons</artifactId>
         <version>1.2.1</version>
     </parent>

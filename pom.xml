@@ -5,7 +5,7 @@
 		<maven>3.0.0</maven>
 	</prerequisites>
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>it.tgi</groupId>
+	<groupId>it.techgap</groupId>
 	<artifactId>tgi-commons</artifactId>
 	<version>1.2.1</version>
 	<packaging>pom</packaging>
