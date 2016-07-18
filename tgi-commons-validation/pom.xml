@@ -22,7 +22,6 @@
         <dependency>
         	<groupId>it.techgap</groupId>
         	<artifactId>tgi-commons-hibernate</artifactId>
-        	<version>1.2.2-SNAPSHOT</version>
         </dependency>
     </dependencies>
 </project>
