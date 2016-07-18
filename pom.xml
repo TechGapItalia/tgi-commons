@@ -246,7 +246,6 @@
 						<goals>
 							<goal>update-file-header</goal>
 							<goal>update-project-license</goal>
-							<goal>aggregate-add-third-party</goal>
 						</goals>
 						<phase>process-sources</phase>
 					</execution>
