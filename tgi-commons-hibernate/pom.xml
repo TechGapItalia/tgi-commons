@@ -9,6 +9,7 @@
 
     <artifactId>tgi-commons-hibernate</artifactId>
     <name>TGI Commons - Hibernate Integration</name>
+    <description>TGI Commons - Hibernate Integration</description>
 
     <dependencies>
         <!-- Hibernate -->
