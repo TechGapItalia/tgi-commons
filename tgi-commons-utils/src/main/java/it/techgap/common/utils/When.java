@@ -16,10 +16,7 @@ public class When {
      * @return the return object of {@link WhenLambda#execute}, or null if the expression is falsey
      */
     public static <T> T when(Boolean expression, WhenLambda lambda, Object... lambdaParams) {
-        if (expression) {
-            return (T) lambda.execute(lambdaParams);
-        }
-        return null;
+        return expression ? (T) lambda.execute(lambdaParams) : null;
     }
 
     /**
@@ -31,8 +28,21 @@ public class When {
      * @return the return object of {@link WhenLambda#execute}, or null if the expression is falsey
      */
     public static <T> T when(Boolean expression, WhenLambda lambda) {
-        if (expression) {
-            return (T) lambda.execute((Object[]) null);
+        return expression ? (T) lambda.execute((Object[]) null) : null;
+    }
+
+    /**
+     * Execute multiple {@link When#when} and returns the first value that isn't null.
+     * Should be used with multiple mutually exclusive whens to execute the correct one based on a precise condition.
+     * Ideally, only one of the whens should return a non-null value at a time.
+     *
+     * @param results outputs of multiple {@link When#when}
+     * @param <T>     return type
+     * @return the first non-null result value
+     */
+    public static <T> T multiWhen(Object... results) {
+        for (Object result : results) {
+            if (result != null) return (T) result;
         }
         return null;
     }
