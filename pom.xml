@@ -27,6 +27,7 @@
 		<module>tgi-commons-offline</module>
 		<module>tgi-commons-mapping</module>
 		<module>tgi-commons-validation</module>
+		<module>tgi-commons-utils</module>
 	</modules>
 
 	<licenses>
@@ -72,6 +73,12 @@
 			<email>d.bonelli@techgap.it</email>
 			<organization>TechGap Italia</organization>
 			<organizationUrl>https://github.com/TechGapItalia</organizationUrl>
+		</developer>
+		<developer>
+			<name>Matteo Joliveau</name>
+			<email>m.joliveau@koor.it</email>
+			<organization>TechGap Italia</organization>
+            <organizationUrl>https://github.com/TechGapItalia</organizationUrl>
 		</developer>
 	</developers>
 
