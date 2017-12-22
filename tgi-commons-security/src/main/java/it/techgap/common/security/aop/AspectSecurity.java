@@ -64,7 +64,7 @@ public abstract class AspectSecurity<UserClass extends Authentication> {
     public final void anyPublicOperation() {
     }
 
-    @Pointcut("within(@it.tgi.common.security.annotation.AopSecured *)")
+    @Pointcut("within(@it.techgap.common.security.annotation.AopSecured *)")
     public final void isSecuredBean() {
     }
 
