@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>it.techgap</groupId>
 	<artifactId>tgi-commons</artifactId>
-	<version>1.2.2</version>
+	<version>1.2.3-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>TGI Commons</name>
 	<description>TGI Commons - Parent Project</description>
@@ -82,7 +82,7 @@
 		<connection>scm:git:https://github.com/TechGapItalia/tgi-commons.git</connection>
 		<developerConnection>scm:git:https://github.com/TechGapItalia/tgi-commons.git</developerConnection>
 		<url>https://github.com/TechGapItalia/tgi-commons.git</url>
-		<tag>tgi-commons-1.2.2</tag>
+		<tag>HEAD</tag>
 	</scm>
 
 	<distributionManagement>
