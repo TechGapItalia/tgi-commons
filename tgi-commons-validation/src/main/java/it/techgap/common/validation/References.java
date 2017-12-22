@@ -45,7 +45,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Documented
 public @interface References {
 
-    String message() default "{it.tgi.common.validation.references}";
+    String message() default "{it.techgap.common.validation.references}";
 
     Class<?>[] groups() default {};
 
