@@ -12,10 +12,10 @@ package it.techgap.common.api.service;
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -33,19 +33,18 @@ import it.techgap.common.api.exception.IdMismatchException;
 import it.techgap.common.api.exception.MalformedEntityException;
 import it.techgap.common.api.model.BaseEntity;
 
-public abstract class GenericCrudServiceWithList<Entity extends BaseEntity<Long>, DTO extends GenericDto<Long>> extends GenericReadOnlyServiceWithList<Entity,DTO> {
+public abstract class GenericCrudServiceWithList<Entity extends BaseEntity<Long>, DTO extends GenericDto<Long>> extends GenericReadOnlyServiceWithList<Entity, DTO> {
 
     protected abstract void assertDuplicate(Entity e, boolean isNew) throws DuplicateEntityException;
-    
 
-    
+
     /**
      * Call back when flag enabled changes.
      * Useful to add a behaviour like disable all children too..
-     * 	
-     * @param newEnabled the updated not saved  {@link Entity}
-     * @param previousEntity   the not updated  {@link Entity} 
-     * */
+     *
+     * @param newEnabled     the updated not saved  {@link Entity}
+     * @param previousEntity the not updated  {@link Entity}
+     */
     protected abstract void onEnabledChange(boolean newEnabled, Entity previousEntity);
 
     public DTO save(DTO DTO) throws DuplicateEntityException {
@@ -61,27 +60,26 @@ public abstract class GenericCrudServiceWithList<Entity extends BaseEntity<Long>
         if (!id.equals(dto.getId())) {
             throw new IdMismatchException(dto.getClass());
         }
-        
+
         _checkDisabledChange(dto);
 
         Entity e = getEntityMapper().reverse().convert(dto);
         _assertDuplicate(e, false);
-        
-        
+
+
         return saveOrUpdate(e);
     }
 
     private void _checkDisabledChange(DTO dto) {
-    	
-		Entity e = getEntityRepository().findOne(dto.getId());
-		if(dto.getEnabled() != e.isEnabled()){
-			onEnabledChange(dto.getEnabled(),e);
-		}
-	}
+
+        Entity e = getEntityRepository().findOne(dto.getId());
+        if (dto.getEnabled() != e.isEnabled()) {
+            onEnabledChange(dto.getEnabled(), e);
+        }
+    }
 
 
-
-	private DTO saveOrUpdate(Entity e) {
+    private DTO saveOrUpdate(Entity e) {
         e = getEntityRepository().save(e);
         return getEntityMapper().convert(e);
     }
@@ -109,12 +107,7 @@ public abstract class GenericCrudServiceWithList<Entity extends BaseEntity<Long>
                 throw new DuplicateEntityException(e.getClass(), e.getId());
             }
         }
-                
-        try {
-            assertDuplicate(e, isNew);
-        } catch (DuplicateEntityException duplicateEntityException) {
-            duplicateEntityException.printStackTrace();
-        }
+        assertDuplicate(e, isNew);
     }
 
 }

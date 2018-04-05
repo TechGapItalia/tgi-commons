@@ -12,10 +12,10 @@ package it.techgap.common.api.service;
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -27,15 +27,15 @@ package it.techgap.common.api.service;
  */
 
 
-import java.io.Serializable;
-
 import it.techgap.common.api.dto.GenericDto;
 import it.techgap.common.api.exception.DuplicateEntityException;
 import it.techgap.common.api.exception.IdMismatchException;
 import it.techgap.common.api.exception.MalformedEntityException;
 import it.techgap.common.api.model.BaseEntity;
 
-public abstract class GenericCrudService<Entity extends BaseEntity<PK>, DTO extends GenericDto<PK>, PK extends Serializable> extends GenericReadOnlyService<Entity,DTO,PK> {
+import java.io.Serializable;
+
+public abstract class GenericCrudService<Entity extends BaseEntity<PK>, DTO extends GenericDto<PK>, PK extends Serializable> extends GenericReadOnlyService<Entity, DTO, PK> {
 
     protected abstract void assertDuplicate(Entity e, boolean isNew) throws DuplicateEntityException;
 
@@ -85,11 +85,7 @@ public abstract class GenericCrudService<Entity extends BaseEntity<PK>, DTO exte
                 throw new DuplicateEntityException(e.getClass(), e.getId());
             }
         }
-        try {
-            assertDuplicate(e, isNew);
-        } catch (DuplicateEntityException duplicateEntityException) {
-            duplicateEntityException.printStackTrace();
-        }
+        assertDuplicate(e, isNew);
     }
 
 }
